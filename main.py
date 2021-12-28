@@ -14,3 +14,6 @@ st.write(df)
 
 st.line_chart(df)
 st.area_chart(df)
+
+myslider=st.slider("Pound")
+st.write(myslider,"in Pounds is",myslider*0.453592,"in Kgs")
