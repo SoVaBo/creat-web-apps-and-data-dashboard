@@ -12,3 +12,5 @@ st.subheader("it is going to be awsome")
 st.write('''just wait for it''')
 st.write(df)
 
+st.line_chart(df)
+st.area_chart(df)
