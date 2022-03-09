@@ -17,6 +17,11 @@ if uploaded_file is not None:
     
 
 #turn to text
+recognizer = Recognizer()
 
+with AudioFile(audio) as audio_file:
+  audio_rec = recognizer.record(audio_file)
+
+text  = recognizer.recognize_google(audio_rec)
 #analyzing the text
 #show the result
