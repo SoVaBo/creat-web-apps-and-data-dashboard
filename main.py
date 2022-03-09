@@ -3,6 +3,10 @@ import pandas
 from pydub import AudioSegment
 from pathlib import Path
 from speech_recognition import Recognizer, AudioFile
+import nltk
+nltk.download('vader_lexicon')
+nltk.download('twitter_samples')
+from nltk.sentiment import SentimentIntensityAnalyzer
 #design the web app
 
 st.title("Mood from Speech")
@@ -24,4 +28,21 @@ with AudioFile(audio) as audio_file:
 
 text  = recognizer.recognize_google(audio_rec)
 #analyzing the text
+analyzer = SentimentIntensityAnalyzer()
+P=0
+N=0
+for i in range(0,30000):
+    text = nltk.corpus.twitter_samples.strings()[i]
+    if analyzer.polarity_scores(text)['compound'] > 0:
+        P += 1
+    else:
+        N += 1
+
 #show the result
+analyzer = SentimentIntensityAnalyzer()
+P=0
+N=0
+if analyzer.polarity_scores(text)['compound'] > 0:
+  st.write('The Audio mood is :)')
+else:
+  st.write('Sad Audio :(')
